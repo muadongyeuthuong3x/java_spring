@@ -22,6 +22,12 @@ public class SpringConfig {
     
     @Bean 
     SecurityFilterChain securityFilterChain(HttpSecurity http){
+        // permitAll allows redirect URL
+        // anyRequest request khacs phai authenticated
+        // loginPage -> name html
+        // loginProcessingUrl url post action trong name html
+        //
+
         http.authorizeHttpRequests(auth -> auth.requestMatchers(PUBLIC_PATH).permitAll().anyRequest().authenticated())
         .formLogin(form->form.loginPage("/login").loginProcessingUrl("/login").defaultSuccessUrl("/dashboard", true).permitAll())
         .logout(logout ->logout.logoutSuccessUrl("/login?logout").permitAll());
