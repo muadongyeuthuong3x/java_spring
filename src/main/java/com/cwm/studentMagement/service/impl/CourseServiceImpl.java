@@ -8,7 +8,10 @@ import com.cwm.studentMagement.model.Courses;
 import com.cwm.studentMagement.repository.CourseRepository;
 import com.cwm.studentMagement.service.CourseService;
 
+import jakarta.transaction.Transactional;
+
 @Service
+@Transactional 
 public class CourseServiceImpl implements CourseService {
     private final CourseRepository courseRepository;
     private final ModelMapper modelMapper;
@@ -27,7 +30,7 @@ public class CourseServiceImpl implements CourseService {
 
     @Override 
     public boolean exitsByCode(String code) {
-        return courseRepository.
+        return courseRepository.existsBycourseCodeIgnoreCase(code);
     }
 
 }
